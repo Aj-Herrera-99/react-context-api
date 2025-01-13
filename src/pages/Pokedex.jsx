@@ -27,16 +27,17 @@ function Pokedex() {
                     params = {
                         limit: limit,
                         start: start,
+                        refetch: true,
                     };
                 } else {
-                    params = null;
+                    params = { refetch: false };
                 }
                 const pokedexData = await indexApi(pokedexUrl, {
                     params,
                 });
-            if(!pokedexData){
-                throw new Error("Errore fetch")
-            }
+                if (!pokedexData) {
+                    throw new Error("Errore fetch");
+                }
                 setPokedex(pokedexData);
             } catch (e) {
                 setPokedex(pokedexFallback); //* pokedexFallback

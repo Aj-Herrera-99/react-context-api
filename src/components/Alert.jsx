@@ -16,26 +16,26 @@ function Alert({ type, message }) {
         switch (type) {
             case "success":
                 return {
-                    bgColor: "green",
-                    textColor: "white",
+                    backgroundColor: "green",
+                    color: "white",
                     borderColor: "green",
                 };
             case "warning":
                 return {
-                    bgColor: "yellow",
+                    backgroundColor: "yellow",
                     textColor: "black",
                     borderColor: "yellow",
                 };
             case "error":
                 return {
-                    bgColor: "red",
-                    textColor: "white",
+                    backgroundColor: "red",
+                    color: "white",
                     borderColor: "red",
                 };
             default:
                 return {
-                    bgColor: "transparent",
-                    textColor: "white",
+                    backgroundColor: "transparent",
+                    color: "white",
                     borderColor: "white",
                 };
         }
@@ -43,11 +43,7 @@ function Alert({ type, message }) {
 
     return (
         <div
-            style={{
-                borderColor: alertStyle()?.borderColor,
-                backgroundColor: alertStyle()?.bgColor,
-                color: alertStyle()?.textColor,
-            }}
+            style={alertStyle()}
             className="px-6 py-1 text-lg border rounded-md alert opacity-60 hover:opacity-100 max-w-[250px] z-20"
         >
             {message}
