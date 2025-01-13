@@ -9,7 +9,7 @@ function GenSelector({ genSelected, setHasMore }) {
     const { setPokedex } = useContext(PokedexContext);
     const handleGenChange = async (e) => {
         const filteredPokedex = await indexApi(pokedexUrl, {
-            params: { gen: e.target.value, refetch: true, start: 0 },
+            params: { gen: e.target.value, refetch: true },
         });
         if (filteredPokedex) {
             setPokedex(filteredPokedex);

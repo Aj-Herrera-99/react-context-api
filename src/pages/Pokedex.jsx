@@ -7,9 +7,6 @@ import { pokedexUrl } from "../globals/globals";
 import PokedexContext from "../contexts/PokedexContext";
 import { useAlertContext } from "../contexts/AlertContext";
 
-const START = 0;
-const LIMIT = 30;
-
 function Pokedex() {
     const { setPokedex } = useContext(PokedexContext);
     const { setAlertData } = useAlertContext();
@@ -22,11 +19,7 @@ function Pokedex() {
                 let params;
                 if (!parseInt(sessionStorage.getItem("firstRender"))) {
                     sessionStorage.setItem("firstRender", "1");
-                    let start = START;
-                    let limit = LIMIT;
                     params = {
-                        limit: limit,
-                        start: start,
                         refetch: true,
                     };
                 } else {

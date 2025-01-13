@@ -54,13 +54,7 @@ function PokedexIndex() {
             const morePokemons = await indexApi(pokedexUrl, {
                 params,
             });
-            if (morePokemons) {
-                filteredPokedex = filteredPokedex.concat(morePokemons);
-                if (filteredPokedex.length > genLength) {
-                    filteredPokedex = filteredPokedex.slice(0, genLength);
-                }
-                setPokedex(filteredPokedex);
-            }
+            morePokemons && setPokedex([...filteredPokedex, ...morePokemons]);
         }
     };
 
@@ -96,6 +90,7 @@ function PokedexIndex() {
                         key={pokemon.id}
                         pokemon={pokemon}
                         setPokedex={setPokedex}
+                        genSelected={genSelected}
                     />
                 ))}
             </InfiniteScroll>

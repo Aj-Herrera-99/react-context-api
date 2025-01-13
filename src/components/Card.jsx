@@ -6,7 +6,7 @@ import axios from "axios";
 import { destroyApi } from "../api/api";
 import { pokedexUrl } from "../globals/globals";
 
-function Card({ pokemon, setPokedex }) {
+function Card({ pokemon, setPokedex, genSelected }) {
     const [isLoading, setIsLoading] = useState(true);
     const [imgPath, setImgPath] = useState(null);
 
