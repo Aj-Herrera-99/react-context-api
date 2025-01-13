@@ -10,26 +10,29 @@ import PokemonStore from "./pages/PokemonStore";
 import PokedexIndex from "./pages/PokedexIndex";
 import PokedexContext from "./contexts/PokedexContext";
 import { useState } from "react";
+import { AlertContextProvider } from "./contexts/AlertContext";
 
 function App() {
     const [pokedex, setPokedex] = useState([]);
 
     return (
         <PokedexContext.Provider value={{ pokedex, setPokedex }}>
-            <BrowserRouter>
-                <Routes>
-                    <Route Component={DefaultLayout}>
-                        <Route index Component={Homepage} />
-                        <Route path="/pokedex" Component={Pokedex}>
-                            <Route index Component={PokedexIndex} />
-                            <Route path=":id" Component={PokemonShow} />
-                            <Route path="store" Component={PokemonStore} />
+            <AlertContextProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route Component={DefaultLayout}>
+                            <Route index Component={Homepage} />
+                            <Route path="/pokedex" Component={Pokedex}>
+                                <Route index Component={PokedexIndex} />
+                                <Route path=":id" Component={PokemonShow} />
+                                <Route path="store" Component={PokemonStore} />
+                            </Route>
+                            <Route path="/about" Component={About} />
+                            <Route path="*" Component={NotFound} />
                         </Route>
-                        <Route path="/about" Component={About} />
-                        <Route path="*" Component={NotFound} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+                    </Routes>
+                </BrowserRouter>
+            </AlertContextProvider>
         </PokedexContext.Provider>
     );
 }

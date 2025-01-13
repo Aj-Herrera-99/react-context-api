@@ -74,12 +74,19 @@ function PokemonStore() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { pokedex: pokedexUpdated, id } = await storeApi(
-            pokedexUrl,
-            newPokemon
-        );
-        pokedexUpdated && setPokedex(pokedexUpdated);
-        navigate(`/pokedex/${id}`);
+        try {
+            const { pokedex: pokedexUpdated, id } = await storeApi(
+                pokedexUrl,
+                newPokemon
+            );
+            setPokedex(pokedexUpdated);
+            navigate(`/pokedex/${id}`);
+        } catch (e) {
+            console.error(e);
+            navigate(`/pokedex/1`);
+        } finally{
+            
+        }
     };
 
     return (
