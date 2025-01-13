@@ -4,6 +4,7 @@ import { storeApi } from "../api/api";
 import PokedexContext from "../contexts/PokedexContext";
 import { pokedexUrl } from "../globals/globals";
 import { useAlertContext } from "../contexts/AlertContext";
+import Spinner from "../components/Spinner";
 
 const pokemonData = {
     name: "",
@@ -45,6 +46,7 @@ function PokemonStore() {
     const { setAlertData } = useAlertContext();
     const navigate = useNavigate();
     const [newPokemon, setNewPokemon] = useState(pokemonData);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, type, value, checked } = e.target;
@@ -76,6 +78,7 @@ function PokemonStore() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
             const { pokedex: pokedexUpdated, id } = await storeApi(
                 pokedexUrl,
@@ -94,6 +97,8 @@ function PokemonStore() {
                 type: "warning",
                 message: `pokedexAPI non disponibile`,
             });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -134,7 +139,9 @@ function PokemonStore() {
                     />
                 ))}
             </div>
-            <SubmitBtn>Generate Pokemon</SubmitBtn>
+            <SubmitBtn>
+                {isLoading ? <Spinner /> : "Generate Pokemon"}
+            </SubmitBtn>
         </Form>
     );
 }
@@ -190,7 +197,7 @@ function SubmitBtn({ children }) {
     return (
         <button
             type="submit"
-            className="px-8 py-3 mx-auto mt-4 rounded-2xl bg-slate-800 w-fit hover:bg-slate-950"
+            className="px-8 py-3 mx-auto mt-4 rounded-2xl bg-slate-800 w-fit hover:bg-slate-950 max-h-[50px]"
         >
             {children}
         </button>

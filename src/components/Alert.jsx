@@ -23,7 +23,7 @@ function Alert({ type, message }) {
             case "warning":
                 return {
                     backgroundColor: "yellow",
-                    textColor: "black",
+                    color: "black",
                     borderColor: "yellow",
                 };
             case "error":
