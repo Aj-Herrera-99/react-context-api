@@ -78,7 +78,10 @@ function PokedexIndex() {
                 />
                 <div className="flex items-center gap-4">
                     <SearchBar onChange={handleFilterChange} filter={filter} />
-                    <OrderPokemons setPokedex={setPokedex} />
+                    <OrderPokemons
+                        setPokedex={setPokedex}
+                        genSelected={genSelected}
+                    />
                 </div>
             </section>
             <InfiniteScroll

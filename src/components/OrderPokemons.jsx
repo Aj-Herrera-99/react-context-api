@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { indexApi } from "../api/api";
 import { pokedexUrl } from "../globals/globals";
 
-function OrderPokemons({ setPokedex }) {
+function OrderPokemons({ setPokedex, genSelected }) {
     const selectRef = useRef(null);
     const [isClicked, setIsClicked] = useState(false);
 
@@ -16,6 +16,8 @@ function OrderPokemons({ setPokedex }) {
             const params = {
                 order: selectRef.current.value,
                 type: type.toLowerCase(),
+                refetch: false,
+                gen: genSelected,
             };
             const orderedPokedex = await indexApi(pokedexUrl, { params });
             orderedPokedex && setPokedex(orderedPokedex);
