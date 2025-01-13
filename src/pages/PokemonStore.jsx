@@ -89,7 +89,7 @@ function PokemonStore() {
             });
         } catch (e) {
             console.error(e);
-            navigate(`/pokedex/1`);
+            navigate(`/errors`);
             setAlertData({
                 type: "warning",
                 message: `pokedexAPI non disponibile`,
