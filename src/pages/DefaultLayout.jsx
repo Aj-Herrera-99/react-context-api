@@ -6,8 +6,6 @@ import { useAlertContext } from "../contexts/AlertContext";
 function DefaultLayout() {
     const { alertData } = useAlertContext();
     const { type, message } = alertData;
-    console.log(type);
-    console.log(message);
     return (
         <>
             <Navbar />

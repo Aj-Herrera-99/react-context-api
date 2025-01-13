@@ -10,9 +10,9 @@
 
 .alert {
     position: absolute;
-    left: 50%;
-    translate: -50%;
-    animation: 0.4s alertAnim ease forwards;
+    top: 6rem;
+    left: 2rem;
+    animation: .6s alertAnim ease-out forwards;
 }
 
 .loader {
@@ -90,9 +90,10 @@
 
 @keyframes alertAnim {
     0% {
-        transform: translateY(3rem);
+        transform: translateY(4rem);
     }
     100% {
         transform: translateY(0);
     }
 }
+

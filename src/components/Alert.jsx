@@ -1,9 +1,16 @@
 import React from "react";
+import { useAlertContext } from "../contexts/AlertContext";
 
 function Alert({ type, message }) {
+    const { setAlertData } = useAlertContext();
+
     if (!message || !type) {
         return null;
     }
+
+    const handleEscClick = () => {
+        setAlertData({ type: "", message: "" });
+    };
 
     const alertStyle = () => {
         switch (type) {
@@ -41,9 +48,13 @@ function Alert({ type, message }) {
                 backgroundColor: alertStyle()?.bgColor,
                 color: alertStyle()?.textColor,
             }}
-            className="px-4 py-1 uppercase border rounded-md alert"
+            className="px-6 py-1 text-lg border rounded-md alert opacity-60 hover:opacity-100 max-w-[250px] z-20"
         >
-            Alert
+            {message}
+            <i
+                onClick={handleEscClick}
+                className="absolute text-xl cursor-pointer top-1 right-1 fa-solid fa-xmark hover:text-red-500"
+            ></i>
         </div>
     );
 }

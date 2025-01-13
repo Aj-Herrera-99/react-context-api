@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { storeApi } from "../api/api";
 import PokedexContext from "../contexts/PokedexContext";
 import { pokedexUrl } from "../globals/globals";
+import { useAlertContext } from "../contexts/AlertContext";
 
 const pokemonData = {
     name: "",
@@ -41,6 +42,7 @@ const base = ["HP", "Attack", "Defense", "Speed"];
 
 function PokemonStore() {
     const { setPokedex } = useContext(PokedexContext);
+    const { setAlertData } = useAlertContext();
     const navigate = useNavigate();
     const [newPokemon, setNewPokemon] = useState(pokemonData);
 
@@ -81,11 +83,17 @@ function PokemonStore() {
             );
             setPokedex(pokedexUpdated);
             navigate(`/pokedex/${id}`);
+            setAlertData({
+                type: "success",
+                message: `Pokemon #${id} aggiunto!`,
+            });
         } catch (e) {
             console.error(e);
             navigate(`/pokedex/1`);
-        } finally{
-            
+            setAlertData({
+                type: "warning",
+                message: `pokedex API non disponibile`,
+            });
         }
     };
 
