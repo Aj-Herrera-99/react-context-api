@@ -48,12 +48,12 @@ function Alert({ type, message }) {
                 backgroundColor: alertStyle()?.bgColor,
                 color: alertStyle()?.textColor,
             }}
-            className="px-6 py-1 text-lg border rounded-md alert opacity-60 hover:opacity-100 max-w-[250px] z-20"
+            className="px-6 py-1 text-lg border rounded-md alert opacity-75 hover:opacity-100 max-w-[250px] z-20"
         >
             {message}
             <i
                 onClick={handleEscClick}
-                className="absolute text-xl cursor-pointer top-1 right-1 fa-solid fa-xmark hover:text-red-500"
+                className="absolute text-xl cursor-pointer top-1 right-1 fa-solid fa-xmark hover:text-red-800"
             ></i>
         </div>
     );

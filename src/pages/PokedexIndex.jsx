@@ -33,7 +33,7 @@ function PokedexIndex() {
     const { pokedex, setPokedex } = useContext(PokedexContext);
     const [filter, setFilter] = useState("");
     const [hasMore, setHasMore] = useState(true);
-    const genSelected = chooseGenByFirstId(parseInt(pokedex[0].id));
+    const genSelected = chooseGenByFirstId(parseInt(pokedex[0]?.id));
 
     let filteredPokedex = pokedex.filter((pokemon) =>
         pokemon.name.english.toLowerCase().startsWith(filter.toLowerCase())
