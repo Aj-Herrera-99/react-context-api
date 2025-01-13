@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { indexApi } from "../api/api";
 import Spinner from "../components/Spinner";
 import pokedexFallback from "../data/pokedex.json"; //* solo per fallback
-import PokedexContext from "../contexts/PokedexContext";
 import { pokedexUrl } from "../globals/globals";
+import PokedexContext from "../contexts/PokedexContext";
 
 const START = 0;
 const LIMIT = 30;
 
 function Pokedex() {
-    const [pokedex, setPokedex] = useState([]);
+    const { setPokedex } = useContext(PokedexContext);
+
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -42,9 +43,7 @@ function Pokedex() {
                     <Spinner />
                 </div>
             ) : (
-                <PokedexContext.Provider value={{ pokedex, setPokedex }}>
-                    <Outlet />
-                </PokedexContext.Provider>
+                <Outlet />
             )}
         </>
     );
